@@ -6,7 +6,7 @@ part of 'state_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$counterHash() => r'398264679d4af1936e22d759aed3c1b62ca4afb1';
+String _$counterHash() => r'a021a5ff7b694343160c76ffe5adfbf028676c3a';
 
 /// See also [Counter].
 @ProviderFor(Counter)
@@ -20,5 +20,33 @@ final counterProvider = AutoDisposeNotifierProvider<Counter, int>.internal(
 );
 
 typedef _$Counter = AutoDisposeNotifier<int>;
+String _$darkModeHash() => r'54d687970391283e693e0beb87bef8e54d34d8da';
+
+/// See also [DarkMode].
+@ProviderFor(DarkMode)
+final darkModeProvider = AutoDisposeNotifierProvider<DarkMode, bool>.internal(
+  DarkMode.new,
+  name: r'darkModeProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$darkModeHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$DarkMode = AutoDisposeNotifier<bool>;
+String _$usernameHash() => r'dce9a57d14cc9f80c14f8e1ee98fe8a8310178bd';
+
+/// See also [Username].
+@ProviderFor(Username)
+final usernameProvider = AutoDisposeNotifierProvider<Username, String>.internal(
+  Username.new,
+  name: r'usernameProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$usernameHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$Username = AutoDisposeNotifier<String>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
