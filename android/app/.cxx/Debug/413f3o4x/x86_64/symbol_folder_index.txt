@@ -1,0 +1,1 @@
+/home/bastian/Documentos/My Proyects/Flutter/Riverpod/flutter_application_1/build/app/intermediates/cxx/Debug/413f3o4x/obj/x86_64
