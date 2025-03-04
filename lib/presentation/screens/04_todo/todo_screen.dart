@@ -16,7 +16,9 @@ class TodoScreen extends ConsumerWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          ref.read(todosProvider.notifier).createTodo(RandomGenerator.getRandomName();
+          ref
+              .read(todosProvider.notifier)
+              .createTodo(RandomGenerator.getRandomName());
         },
       ),
     );
@@ -61,7 +63,7 @@ class _TodoView extends ConsumerWidget {
               final todo = todos[index];
 
               return SwitchListTile(
-                  title: const Text(todo.description),
+                  title: Text(todo.description),
                   value: todo.done,
                   onChanged: (value) {});
             },
