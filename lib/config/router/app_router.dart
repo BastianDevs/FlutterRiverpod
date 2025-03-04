@@ -48,5 +48,4 @@ GoRouter appRouter(AppRouterRef ref) {
       builder: (context, state) => const StateNotifierScreen(),
     ),
   ]);
-  ;
 }

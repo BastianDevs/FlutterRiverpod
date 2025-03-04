@@ -31,8 +31,8 @@ class _TodoView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentFilter = ref.watch(todoCurrentFilterProvider);
-    final todos = ref.watch(todosProvider);
-
+    //final todos = ref.watch(todosProvider);
+    final todos = ref.watch(filteredTodosProvider);
     return Column(
       children: [
         const ListTile(
@@ -65,7 +65,9 @@ class _TodoView extends ConsumerWidget {
               return SwitchListTile(
                   title: Text(todo.description),
                   value: todo.done,
-                  onChanged: (value) {});
+                  onChanged: (value) {
+                    ref.read(todosProvider.notifier).toggleTodo(todo.id);
+                  });
             },
           ),
         )

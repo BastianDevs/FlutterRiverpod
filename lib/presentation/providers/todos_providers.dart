@@ -9,7 +9,7 @@ const uuid = Uuid();
 
 enum FilterType { all, completed, pending }
 
-@riverpod
+@Riverpod(keepAlive: true) //Provider que se destruye cuando yo lo necesite
 class TodoCurrentFilter extends _$TodoCurrentFilter {
   @override
   FilterType build() => FilterType.all;
@@ -19,7 +19,7 @@ class TodoCurrentFilter extends _$TodoCurrentFilter {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class Todos extends _$Todos {
   @override
   List<Todo> build() => [
@@ -53,10 +53,36 @@ class Todos extends _$Todos {
             completedAt: null)
       ];
 
+  void toggleTodo(String id) {
+    // map barre todos los elementos y los regresa con iterable
+    state = state.map((todo) {
+      if (todo.id == id) {
+        todo = todo.copyWith(completedAt: todo.done ? null : DateTime.now());
+      }
+
+      return todo;
+    }).toList();
+  }
+
   void createTodo(String description) {
     state = [
       ...state,
       Todo(id: uuid.v4(), description: description, completedAt: null),
     ];
+  }
+}
+
+@riverpod
+List<Todo> filteredTodos(FilteredTodosRef ref) {
+  final currentFilter = ref.watch(todoCurrentFilterProvider);
+  final todos = ref.watch(todosProvider);
+
+  switch (currentFilter) {
+    case FilterType.all:
+      return todos;
+    case FilterType.completed:
+      return todos.where((todo) => todo.done).toList();
+    case FilterType.pending:
+      return todos.where((todo) => !todo.done).toList();
   }
 }
