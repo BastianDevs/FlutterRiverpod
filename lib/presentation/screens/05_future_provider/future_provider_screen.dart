@@ -29,7 +29,7 @@ class FutureProviderScreen extends ConsumerWidget {
               ref.read(pokemonIdProvider.notifier).nextPokemon();
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           FloatingActionButton(
